@@ -1,17 +1,16 @@
 from pygame import Surface
-from pacman_game import PacmanGame
 
 class Entity:
-    def __init__(self, game: PacmanGame, sprites: list[Surface], delay: int = 1):
+    def __init__(self, game, sprites: list[Surface], delay: int = 1, overflow: int = 0):
         self.game = game
         self.sprites = sprites
         self.delay = delay
+        self.overflow = overflow
         self.index = 0
     
     def update(self):
-        frame = self.game.frames.get()
-        if frame % self.delay == 0:
-            self.index = (self.index + 1) % len(self.sprites)
+        self.index = (self.index + 1) % (len(self.sprites) + self.overflow)
 
-    def draw(self, canvas: Surface, pos: tuple[int, int]):
-        canvas.blit(self.sprites[self.index], pos)
+    def draw(self, pos: tuple[int, int]):
+        if self.index < len(self.sprites):
+            self.game.screen.blit(self.sprites[self.index], pos)

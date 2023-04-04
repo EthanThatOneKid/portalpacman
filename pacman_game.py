@@ -2,6 +2,7 @@ import pygame
 from pacman_spritesheet import PacmanSpritesheet
 from counter import Counter
 from state import State
+from maze import Maze, MAIN_MENU_MAZE
 
 class PacmanGame:
     (WIDTH, HEIGHT) = (256, 216)
@@ -17,6 +18,9 @@ class PacmanGame:
         self.sheet = PacmanSpritesheet(self)
         self.frames = Counter()
         self.state = State()
+
+        # Main menu setup
+        self.main_menu_maze = MAIN_MENU_MAZE
 
     def run(self):
         # Game loop
@@ -35,16 +39,11 @@ class PacmanGame:
             self.screen.fill((0, 0, 0))
 
             if self.state.is_main_menu():
-                # Main menu
-                # Text in center of the screen "Press Enter to play"
-                self.
+                self.main_menu()
             elif self.state.is_playing():
-                self.sheet.title_pacman.draw((self.WIDTH // 2, self.HEIGHT // 2))
+                self.tick()
             elif self.state.is_paused():
-                print("Paused")
-                # Paused
-                # Update the game
-                # Draw the game
+                self.pause_menu()
 
             # Update the display
             pygame.display.flip()
@@ -55,6 +54,12 @@ class PacmanGame:
         # Quit Pygame properly
         pygame.quit()
 
+    def main_menu(self):
+        self.sheet.spell("portal", (self.WIDTH * 0.4, self.HEIGHT * 0.1))
+        self.sheet.title_pacman.draw((self.WIDTH * 0.5, self.HEIGHT * 0.25))
+        self.sheet.spell("by ethan davidson!", (self.WIDTH * 0.25, self.HEIGHT * 0.4))
+        self.sheet.spell("enter to start!!!", (self.WIDTH * 0.3, self.HEIGHT * 0.95))
+        
 
 if __name__ == "__main__":
     game = PacmanGame()
