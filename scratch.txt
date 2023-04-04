@@ -1,0 +1,103 @@
+self.pacman_right_1 = self.get_sprite(339, 0, 16, 16)
+        self.pacman_right_2 = self.get_sprite(356, 0, 16, 16)
+        self.pacman_left_1 = self.get_sprite(339, 17, 16, 16)
+        self.pacman_left_2 = self.get_sprite(356, 17, 16, 16)
+        self.pacman_up_1 = self.get_sprite(339, 34, 16, 16)
+        self.pacman_up_2 = self.get_sprite(356, 34, 16, 16)
+        self.pacman_down_1 = self.get_sprite(339, 51, 16, 16)
+        self.pacman_down_2 = self.get_sprite(356, 51, 16, 16)
+        self.pacman_dying_1 = self.get_sprite(373, 0, 16, 16)
+        self.pacman_dying_2 = self.get_sprite(390, 0, 16, 16)
+        self.pacman_dying_3 = self.get_sprite(407, 0, 16, 16)
+        self.pacman_dying_4 = self.get_sprite(424, 0, 16, 16)
+        self.pacman_dying_5 = self.get_sprite(441, 0, 16, 16)
+        self.pacman_dying_6 = self.get_sprite(458, 0, 16, 16)
+        self.pacman_dying_7 = self.get_sprite(475, 0, 16, 16)
+        self.pacman_dying_8 = self.get_sprite(492, 0, 16, 16)
+        self.pacman_dying_9 = self.get_sprite(509, 0, 16, 16)
+        self.pacman_dying_10 = self.get_sprite(526, 0, 16, 16)
+
+        # Blinky enemy (red ghost) sprites and animations.
+        self.blinky_right_1 = self.get_sprite(339, 68, 16, 16)
+        self.blinky_right_2 = self.get_sprite(356, 68, 16, 16)
+        self.blinky_left_1 = self.get_sprite(373, 68, 16, 16)
+        self.blinky_left_2 = self.get_sprite(390, 68, 16, 16)
+        self.blinky_up_1 = self.get_sprite(407, 68, 16, 16)
+        self.blinky_up_2 = self.get_sprite(424, 68, 16, 16)
+        self.blinky_down_1 = self.get_sprite(441, 68, 16, 16)
+        self.blinky_down_2 = self.get_sprite(458, 68, 16, 16)
+
+        # Pinky enemy (pink ghost) sprites and animations.
+        self.pinky_right_1 = self.get_sprite(339, 85, 16, 16)
+        self.pinky_right_2 = self.get_sprite(356, 85, 16, 16)
+        self.pinky_left_1 = self.get_sprite(373, 85, 16, 16)
+        self.pinky_left_2 = self.get_sprite(390, 85, 16, 16)
+        self.pinky_up_1 = self.get_sprite(407, 85, 16, 16)
+        self.pinky_up_2 = self.get_sprite(424, 85, 16, 16)
+        self.pinky_down_1 = self.get_sprite(441, 85, 16, 16)
+        self.pinky_down_2 = self.get_sprite(458, 85, 16, 16)
+
+        # Inky enemy (blue ghost) sprites and animations.
+        self.inky_right_1 = self.get_sprite(339, 102, 16, 16)
+        self.inky_right_2 = self.get_sprite(356, 102, 16, 16)
+        self.inky_left_1 = self.get_sprite(373, 102, 16, 16)
+        self.inky_left_2 = self.get_sprite(390, 102, 16, 16)
+        self.inky_up_1 = self.get_sprite(407, 102, 16, 16)
+        self.inky_up_2 = self.get_sprite(424, 102, 16, 16)
+        self.inky_down_1 = self.get_sprite(441, 102, 16, 16)
+        self.inky_down_2 = self.get_sprite(458, 102, 16, 16)
+
+        # Clyde enemy (orange ghost) sprites and animations.
+        self.clyde_right_1 = self.get_sprite(339, 119, 16, 16)
+        self.clyde_right_2 = self.get_sprite(356, 119, 16, 16)
+        self.clyde_left_1 = self.get_sprite(373, 119, 16, 16)
+        self.clyde_left_2 = self.get_sprite(390, 119, 16, 16)
+        self.clyde_up_1 = self.get_sprite(407, 119, 16, 16)
+        self.clyde_up_2 = self.get_sprite(424, 119, 16, 16)
+        self.clyde_down_1 = self.get_sprite(441, 119, 16, 16)
+        self.clyde_down_2 = self.get_sprite(458, 119, 16, 16)
+
+         # Turn-to-Blue enemy sprites and animations.
+        self.ttb_1 = self.get_sprite(475, 68, 16, 16)
+        self.ttb_2 = self.get_sprite(492, 68, 16, 16)
+        self.ttb_3 = self.get_sprite(509, 68, 16, 16)
+        self.ttb_4 = self.get_sprite(526, 68, 16, 16)
+
+        # Eyes enemy sprites and animations.
+        self.eyes_1 = self.get_sprite(475, 85, 16, 16)
+        self.eyes_2 = self.get_sprite(492, 85, 16, 16)
+        self.eyes_3 = self.get_sprite(509, 85, 16, 16)
+        self.eyes_4 = self.get_sprite(526, 85, 16, 16)       
+
+        # Food sprites.
+        self.cherry = self.get_sprite(373, 51, 16, 16)
+        self.strawberry = self.get_sprite(390, 51, 16, 16)
+        self.orange = self.get_sprite(407, 51, 16, 16)
+        self.apple = self.get_sprite(424, 51, 16, 16)
+        self.melon = self.get_sprite(441, 51, 16, 16)
+        self.galaxian = self.get_sprite(458, 51, 16, 16)
+        self.bell = self.get_sprite(475, 51, 16, 16)
+        self.key = self.get_sprite(492, 51, 16, 16)
+
+        # Pellet sprites.
+        self.pellet = self.get_sprite(535, 44, 8, 8)
+        self.power_pellet = self.get_sprite(544, 44, 8, 8)
+
+
+        # Maze sprites.
+        self.maze_empty = self.get_sprite(170, 0, 168, 216)
+
+
+        # Text sprites.
+        self.text_200 = self.get_sprite(339, 136, 16, 16)
+        self.text_400 = self.get_sprite(356, 136, 16, 16)
+        self.text_800 = self.get_sprite(373, 136, 16, 16)
+        self.text_1600 = self.get_sprite(390, 136, 16, 16)
+        self.text_100 = self.get_sprite(339, 153, 16, 16)
+        self.text_300 = self.get_sprite(356, 153, 16, 16)
+        self.text_500 = self.get_sprite(373, 153, 16, 16)
+        self.text_700 = self.get_sprite(390, 153, 16, 16)
+        self.text_1000 = self.get_sprite(407, 153, 16, 16)
+
+        # Splash screen sprites.
+        self.title_pacman = self.get_sprite(424, 172, 192, 48)
