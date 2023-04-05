@@ -38,16 +38,16 @@ class Maze:
         pass
 
     def move_left(self):
-        self.pacman_direction = PlayerEntity.STATE.LEFT
+        self.pacman_direction = PlayerEntity.STATE["LEFT"]
 
     def move_right(self):
-        self.pacman_direction = PlayerEntity.STATE.RIGHT
+        self.pacman_direction = PlayerEntity.STATE["RIGHT"]
 
     def move_up(self):
-        self.pacman_direction = PlayerEntity.STATE.UP
+        self.pacman_direction = PlayerEntity.STATE["UP"]
 
     def move_down(self):
-        self.pacman_direction = PlayerEntity.STATE.DOWN
+        self.pacman_direction = PlayerEntity.STATE["DOWN"]
 
     def draw(self, screen: pygame.Surface, pos: tuple[int, int], scale: int = 16):
         # if self.show_background:
