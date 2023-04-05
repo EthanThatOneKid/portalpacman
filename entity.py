@@ -10,7 +10,9 @@ class Entity:
         self.index = 0
 
     def update(self):
-        self.index = (self.index + 1) % (len(self.sprites) + self.overflow)
+        # TODO: Fix this!
+        self.index = (self.index + 1) % (self.delay *
+                                         len(self.sprites) + self.overflow)
 
     def draw(self, screen: Surface, pos: tuple[int, int]):
         if self.index < len(self.sprites):
@@ -19,7 +21,7 @@ class Entity:
 
 
 class PlayerEntity():
-    DELAY = 30
+    DELAY = 60
     STATE = {
         "RIGHT": "right_entity",
         "LEFT": "left_entity",
@@ -44,17 +46,24 @@ class PlayerEntity():
 
     def draw(self, screen: Surface, pos: tuple[int, int]):
         if self.state == self.STATE["RIGHT"]:
-            self.right_entity.update()
             self.right_entity.draw(screen, pos)
         elif self.state == self.STATE["LEFT"]:
-            self.left_entity.update()
             self.left_entity.draw(screen, pos)
         elif self.state == self.STATE["UP"]:
-            self.up_entity.update()
             self.up_entity.draw(screen, pos)
         elif self.state == self.STATE["DOWN"]:
-            self.down_entity.update()
             self.down_entity.draw(screen, pos)
         elif self.state == self.STATE["DYING"]:
-            self.dying_entity.update()
             self.dying_entity.draw(self.screen, pos)
+
+    def update(self):
+        if self.state == self.STATE["RIGHT"]:
+            self.right_entity.update()
+        elif self.state == self.STATE["LEFT"]:
+            self.left_entity.update()
+        elif self.state == self.STATE["UP"]:
+            self.up_entity.update()
+        elif self.state == self.STATE["DOWN"]:
+            self.down_entity.update()
+        elif self.state == self.STATE["DYING"]:
+            self.dying_entity.update()
