@@ -5,7 +5,7 @@ Pac-Man spin-off in PyGame with "Portal" features as part of a CPSC 386 Spring 2
 ## Running the game
 
 ```sh
-python3 pacman_game.py
+python3 game.py
 ```
 
 ## Acknowledgements
