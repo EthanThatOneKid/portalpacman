@@ -1,27 +1,29 @@
 from pygame import Surface
-from spritesheet import PacmanSpritesheet
+from spritesheet import PacmanSpritesheet, PacmanSprite
 
 
 class Entity:
-    def __init__(self, sprites: list[Surface], delay: int = 1, overflow: int = 0):
+    def __init__(self, sprites: list[PacmanSprite], delay: int = 1, overflow: int = 0):
         self.sprites = sprites
         self.delay = delay
         self.overflow = overflow
         self.index = 0
+        self.changes = 0
 
     def update(self):
-        # TODO: Fix this!
-        self.index = (self.index + 1) % (self.delay *
-                                         len(self.sprites) + self.overflow)
+        if self.changes == self.delay:
+            self.changes = 0
+            self.index = (self.index + 1) % (len(self.sprites) + self.overflow)
+        else:
+            self.changes += 1
 
     def draw(self, screen: Surface, pos: tuple[int, int]):
         if self.index < len(self.sprites):
-            surface = self.sprites[self.index].surface
-            screen.blit(surface, pos)
+            self.sprites[self.index].draw(screen, pos)
 
 
 class PlayerEntity():
-    DELAY = 60
+    DELAY = 24
     STATE = {
         "RIGHT": "right_entity",
         "LEFT": "left_entity",
