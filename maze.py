@@ -11,8 +11,7 @@ class Maze:
         self.ghosts = []
         self.ghost_speed = ghost_speed
         self.pacman_pos = pacman
-        # Coordinates of pacman sprite in the current cell in the maze.
-        self.pacman_offset = (0.5, 0.5)
+        self.pacman_offset = (0, 0)
         self.pacman_speed = pacman_speed
         self.pacman_direction = PlayerEntity.STATE["RIGHT"]
         self.pacman_entity = PlayerEntity()
@@ -69,12 +68,16 @@ class Maze:
         # for ghost in self.ghosts:
         #     ghost.draw(self.coords[ghost.pos])
 
+        self.pacman_entity.update()
+        self.pacman_entity.draw(
+            screen, self.get_pacman_pos(pos, scale))
+
+    def get_pacman_pos(self, pos: tuple[int, int], scale: int):
         pacman_pos_x = (
             self.adjacency_map[self.pacman_pos][0][0] + self.pacman_offset[0]) * scale + pos[0]
         pacman_pos_y = (
             self.adjacency_map[self.pacman_pos][0][1] + self.pacman_offset[1]) * scale + pos[1]
-        self.pacman_entity.draw(
-            screen, (pacman_pos_x, pacman_pos_y))
+        return (pacman_pos_x, pacman_pos_y)
 
     def draw_track(self, screen: pygame.Surface, pos: tuple[int, int], scale: int = 1):
         for (_, ((x1, y1), (up_name, right_name, down_name, left_name))) in self.adjacency_map.items():
