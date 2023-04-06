@@ -83,8 +83,8 @@ class MainMenuScene():
             self.screen, (Game.WIDTH * 0.5, Game.HEIGHT * 0.25))
         self.sheet.spell(self.screen, "by ethan davidson C 2023",
                          (Game.WIDTH * 0.14, Game.HEIGHT * 0.4))
-        self.maze.draw(self.screen,
-                       (Game.WIDTH * 0.3, Game.HEIGHT * 0.5))
+        self.maze.update_and_draw(
+            self.screen, (Game.WIDTH * 0.3, Game.HEIGHT * 0.5))
         self.sheet.spell(self.screen, "enter to start!!!",
                          (Game.WIDTH * 0.3, Game.HEIGHT * 0.95))
 

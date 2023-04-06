@@ -16,6 +16,10 @@ class Maze:
         self.pacman_entity = PlayerEntity()
         self.show_track = True
 
+    def shoot_portal(self):
+        # TODO: Shoot a portal.
+        pass
+
     def pacman_update_and_draw(self, screen: pygame.Surface, pos: tuple[int, int], scale: int):
         adjacent_up = self.adjacency_map[self.pacman_pos][1][0]
         adjacent_right = self.adjacency_map[self.pacman_pos][1][1]
@@ -62,6 +66,7 @@ class Maze:
             screen, self.get_pacman_pos(pos, scale))
 
     def update_ghosts(self):
+        # TODO: Update ghosts.
         # for ghost in self.ghosts:
         #     ghost.update()
         pass
@@ -86,16 +91,19 @@ class Maze:
         if next_pos is not None and self.pacman_offset[0] == 0:
             self.pacman_entity.state = PlayerEntity.STATE["DOWN"]
 
-    def draw(self, screen: pygame.Surface, pos: tuple[int, int], scale: int = 16):
+    def update_and_draw(self, screen: pygame.Surface, pos: tuple[int, int], scale: int = 16):
         if self.show_track:
             self.draw_track(screen, pos, scale)
 
+        # TODO: Draw pellets.
         # for pellet in self.pellets:
         #     self.game.screen.blit(self.game.sheet.pellet, self.coords[pellet])
 
+        # TODO: Draw power pellets.
         # for power_pellet in self.power_pellets:
         #     self.game.screen.blit(self.game.sheet.power_pellet, self.coords[power_pellet])
 
+        # TODO Draw ghosts.
         # for ghost in self.ghosts:
         #     ghost.draw(self.coords[ghost.pos])
 
@@ -158,6 +166,38 @@ class MainMenuMaze(Maze):
                 # "top_left", "top_right", "bottom_right", "bottom_left",
         ],
             pacman="top_left",
+            pacman_speed=1,
+            ghost_speed=1,
+        )
+
+
+class ClassicMaze(Maze):
+    def __init__(self):
+        super().__init__(adjacency_map={
+            "A1": ((0, 0), (None, "A2", "B1", None)),
+            "A2": ((1, 0), (None, "A3", None, "A1")),
+            "A3": ((2, 0), (None, "A4", None, "A2")),
+            "A4": ((3, 0), (None, "A5", None, "A3")),
+            "A5": ((4, 0), (None, "A6", None, "A4")),
+            "A6": ((5, 0), (None, "A7", None, "A5")),
+            "A7": ((6, 0), (None, "A8", None, "A6")),
+            "A8": ((7, 0), (None, "A9", None, "A7")),
+            "A9": ((8, 0), (None, None, "B9", "A8")),
+
+            "A11": ((10, 0), (None, "A12", "B11", None)),
+            # TODO: Complete classic Pac-Man maze!
+            # "A12": (())
+        },
+            pellets=[
+            # "top_01", "top_02", "top_03", "top_04", "top_05", "top_06",
+                # "right_01", "right_02", "right_03", "right_04", "right_05", "right_06",
+                # "bottom_01", "bottom_02", "bottom_03", "bottom_04", "bottom_05", "bottom_06",
+                # "left_01", "left_02", "left_03", "left_04", "left_05", "left_06",
+        ],
+            power_pellets=[
+            # "top_left", "top_right", "bottom_right", "bottom_left",
+        ],
+            pacman="top_left",  # TODO: Pick middle center of classic maze
             pacman_speed=1,
             ghost_speed=1,
         )
