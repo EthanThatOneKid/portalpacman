@@ -49,7 +49,7 @@ class Game:
             pygame.display.flip()
 
             # Limit the frame rate
-            self.clock.tick(16)
+            self.clock.tick(12)
 
         # Quit Pygame properly
         pygame.quit()
