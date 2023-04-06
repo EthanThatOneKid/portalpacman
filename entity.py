@@ -23,7 +23,7 @@ class Entity:
 
 
 class PlayerEntity():
-    DELAY = 1
+    DELAY = 5
     STATE = {
         "RIGHT": "right_entity",
         "LEFT": "left_entity",

@@ -20,7 +20,7 @@ class Game:
         self.sheet = PacmanSpritesheet()
         self.frames = Counter()
         self.main_menu_scene = MainMenuScene(self.screen, self.sheet)
-        self.playing_scene = PlayingScene()
+        self.playing_scene = PlayingScene(self.screen, self.sheet)
         self.paused_scene = PausedScene()
         self.scene = SceneManager(self.main_menu_scene, self.playing_scene,
                                   self.paused_scene)
@@ -37,6 +37,18 @@ class Game:
                     if event.key == pygame.K_RETURN:
                         self.state.toggle()
 
+            # Check key presses
+            keys = pygame.key.get_pressed()
+            if self.scene.is_main_menu():
+                if keys[pygame.K_RIGHT]:
+                    self.scene.main_menu_scene.maze.move_right()
+                if keys[pygame.K_UP]:
+                    self.scene.main_menu_scene.maze.move_up()
+                if keys[pygame.K_DOWN]:
+                    self.scene.main_menu_scene.maze.move_down()
+                if keys[pygame.K_LEFT]:
+                    self.scene.main_menu_scene.maze.move_left()
+
             # Update the game
             self.frames.update()
             self.screen.fill((0, 0, 0))
@@ -49,7 +61,7 @@ class Game:
             pygame.display.flip()
 
             # Limit the frame rate
-            self.clock.tick(16)
+            self.clock.tick(60)
 
         # Quit Pygame properly
         pygame.quit()
@@ -78,8 +90,9 @@ class MainMenuScene():
 
 
 class PlayingScene():
-    def __init__(self):
-        pass
+    def __init__(self, screen: pygame.Surface, sheet: PacmanSpritesheet):
+        self.screen = screen
+        self.sheet = sheet
 
     def update(self):
         pass
