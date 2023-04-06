@@ -17,19 +17,56 @@ class Maze:
         self.pacman_entity = PlayerEntity()
         self.show_track = True
 
-    def update_pacman(self):
-        if self.pacman_direction == PlayerEntity.STATE["RIGHT"]:
-            self.pacman_offset = (
-                self.pacman_offset[0] + self.pacman_speed, self.pacman_offset[1])
+    def pacman_draw(self, screen: pygame.Surface, pos: tuple[int, int], scale: int):
+        adjacent_up = self.adjacency_map[self.pacman_pos][1][0]
+        adjacent_right = self.adjacency_map[self.pacman_pos][1][1]
+        adjacent_down = self.adjacency_map[self.pacman_pos][1][2]
+        adjacent_left = self.adjacency_map[self.pacman_pos][1][3]
 
-            adjacent_right = self.adjacency_map[self.pacman_pos][1][1]
-            if self.pacman_offset[0] > 0.5 and adjacent_right == None:
-                self.pacman_offset = (0.5, self.pacman_offset[1])
+        if self.pacman_direction is PlayerEntity.STATE["UP"]:
+            if adjacent_up is not None:
+                self.pacman_offset = (
+                    self.pacman_offset[0], self.pacman_offset[1] - self.pacman_speed)
+                if self.pacman_offset[1] <= -scale:
+                    self.pacman_offset = (0, 0)
+                    self.pacman_pos = adjacent_up
+            else:
+                self.move_right()
 
-            if self.pacman_offset[0] < 1.0:
-                self.pacman_offset = 0
-                self.pacman_pos = adjacent_right
-                self.pacman_pos = self.adjacency_map[self.pacman_pos][1][1]
+        if self.pacman_direction is PlayerEntity.STATE["RIGHT"]:
+            if adjacent_right is not None:
+                self.pacman_offset = (
+                    self.pacman_offset[0] + self.pacman_speed, 0)
+                if self.pacman_offset[0] >= scale:
+                    self.pacman_offset = (0, 0)
+                    self.pacman_pos = adjacent_right
+            else:
+                self.move_down()
+
+        if self.pacman_direction is PlayerEntity.STATE["DOWN"]:
+            if adjacent_down is not None:
+                self.pacman_offset = (
+                    self.pacman_offset[0], self.pacman_offset[1] + self.pacman_speed)
+                if self.pacman_offset[1] >= scale:
+                    self.pacman_offset = (0, 0)
+                    self.pacman_pos = adjacent_down
+            else:
+                self.move_left()
+
+        if self.pacman_direction is PlayerEntity.STATE["LEFT"]:
+            if adjacent_left is not None:
+                self.pacman_offset = (
+                    self.pacman_offset[0] - self.pacman_speed, self.pacman_offset[1])
+                if self.pacman_offset[0] <= -scale:
+                    self.pacman_offset = (0, 0)
+                    self.pacman_pos = adjacent_left
+            else:
+                self.move_up()
+
+        print(self.pacman_pos, adjacent_right)
+        self.pacman_entity.update()
+        self.pacman_entity.draw(
+            screen, self.get_pacman_pos(pos, scale))
 
     def update_ghosts(self):
         # for ghost in self.ghosts:
@@ -68,15 +105,13 @@ class Maze:
         # for ghost in self.ghosts:
         #     ghost.draw(self.coords[ghost.pos])
 
-        self.pacman_entity.update()
-        self.pacman_entity.draw(
-            screen, self.get_pacman_pos(pos, scale))
+        self.pacman_draw(screen, pos, scale)
 
-    def get_pacman_pos(self, pos: tuple[int, int], scale: int):
+    def get_pacman_pos(self, pos: tuple[int, int], scale: int = 1):
         pacman_pos_x = (
-            self.adjacency_map[self.pacman_pos][0][0] + self.pacman_offset[0]) * scale + pos[0]
+            self.adjacency_map[self.pacman_pos][0][0] * scale + self.pacman_offset[0]) + pos[0]
         pacman_pos_y = (
-            self.adjacency_map[self.pacman_pos][0][1] + self.pacman_offset[1]) * scale + pos[1]
+            self.adjacency_map[self.pacman_pos][0][1] * scale + self.pacman_offset[1]) * scale + pos[1]
         return (pacman_pos_x, pacman_pos_y)
 
     def draw_track(self, screen: pygame.Surface, pos: tuple[int, int], scale: int = 1):
@@ -93,7 +128,7 @@ class Maze:
 class MainMenuMaze(Maze):
     def __init__(self):
         super().__init__(adjacency_map={
-            "top_left": ((0, 0), (None, None, "left_01", "top_01")),
+            "top_left": ((0, 0), (None, "top_01", "left_01", None)),
             "top_01": ((1, 0), (None, "top_02", None, "top_left")),
             "top_02": ((2, 0), (None, "top_03", None, "top_01")),
             "top_03": ((3, 0), (None, "top_04", None, "top_02")),
